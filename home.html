@@ -1,0 +1,610 @@
+<!DOCTYPE html> 
+<html lang="ru"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>TEKA - Перевозка грузов</title> 
+    <style> 
+        body { 
+            margin: 0; 
+            font-family: Arial, sans-serif; 
+        } 
+        header { 
+            background-color: #F4F5F5; 
+            padding: 10px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 2px solid #C46D00; 
+        } 
+        .logo img { 
+            height: 100px; 
+            width: 100px; 
+        } 
+        .header-info { 
+            font-size: 18px; 
+            color: #797B7D; 
+        } 
+        .header-info a { 
+            color: #797B7D; 
+            text-decoration: none; 
+            margin-left: 20px; 
+        } 
+        .cta-button { 
+            background-color: #ED8400; 
+            color: white; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            font-size: 14px; 
+            font-weight: bold; 
+        } 
+        nav { 
+            background-color: #261E1A; 
+            text-align: center; 
+            padding: 10px 0; 
+        } 
+        nav a { 
+            color: white; 
+            text-decoration: none; 
+            margin: 0 15px; 
+            font-size: 16px; 
+            font-weight: bold; 
+            transition: color 0.3s; 
+        } 
+        nav a:hover { 
+            color: #ED8400; 
+        } 
+        .hero { 
+            background-image: url('gridphoto3.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            height: 100vh; 
+            position: relative; 
+            color: white; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        } 
+        .hero-content { 
+            max-width: 50%; 
+            text-align: left; 
+        } 
+        .hero-content h1 { 
+            font-size: 36px; 
+            margin-bottom: 20px; 
+            background: rgba(0, 0, 0, 0.5); 
+            padding: 10px; 
+            border-radius: 5px; 
+        } 
+        .hero-content a { 
+            display: inline-block; 
+            background-color: #ED8400; 
+            color: white; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            font-weight: bold; 
+            font-size: 14px; 
+        } 
+        .form-container { 
+            background-color: rgba(255, 255, 255, 0.9); 
+            padding: 20px; 
+            border-radius: 10px; 
+            max-width: 300px; 
+            position: absolute; 
+            top: 50%; 
+            right: 10%; 
+            transform: translateY(-50%); 
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+        } 
+        .form-container h3 { 
+            font-size: 18px; 
+            color: #261E1A; 
+            margin-bottom: 20px; 
+        } 
+        .form-container input, .form-container textarea, .form-container button { 
+            width: 100%; 
+            margin-bottom: 15px; 
+            padding: 10px; 
+            font-size: 14px; 
+            border: 1px solid #C46D00; 
+            border-radius: 5px; 
+        } 
+        .form-container button { 
+            background-color: #ED8400; 
+            color: white; 
+            font-weight: bold; 
+            cursor: pointer; 
+        }
+
+        .services-section {
+            background-color: #F4F5F5;
+            padding: 50px 5%;
+            text-align: center;
+        }
+
+        .services-section h2 {
+            font-size: 28px;
+            color: #261E1A;
+            margin-bottom: 40px;
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Для трех блоков в ряду */
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .service-block {
+            text-align: center;
+        }
+
+        .service-block img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .service-block h3 {
+            font-size: 20px;
+            color: #261E1A;
+            margin-top: 15px;
+        }
+
+        .service-block p {
+            font-size: 14px;
+            color: #797B7D;
+            margin-top: 10px;
+        }
+
+        /* Стили для секции "Наши преимущества" */
+        .advantages-section {
+    background-image: url('секция3.jpg'); /* Укажите путь к вашей картинке */
+    background-size: cover;
+    background-position: center;
+    padding: 80px 5%;
+    color: white;
+    text-align: center;
+}
+
+.advantages-section h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.advantages-section p {
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+.advantages-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px; /* Отступы между блоками */
+}
+
+.advantage-block {
+    background-color: white;
+    padding: 15px;
+    text-align: left;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    height: 200px;
+    margin: 0 auto;
+}
+
+.advantage-block img {
+    width: 50px; /* Настройте размер изображения */
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+.advantage-block h3 {
+    font-size: 18px;
+    color: #261E1A;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.advantage-block p {
+    font-size: 14px;
+    color: #797B7D;
+    margin: 0;
+}
+
+.transport-section {
+    padding: 60px 5%;
+    background-color: #fff;
+}
+
+.transport-section {
+    padding: 60px 5%;
+    background-color: #fff;
+}
+
+.transport-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.text-block {
+    max-width: 50%;
+}
+
+.text-block h2 {
+    font-size: 28px;
+    color: #000;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.text-block p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.call-button {
+    background-color: #F68D00;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.call-button:hover {
+    background-color: #d37300;
+}
+
+.image-block {
+    position: relative;
+    max-width: 45%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-block img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip {
+    position: absolute;
+    bottom: -100px; /* Расположено под картой */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: left;
+}
+
+.tooltip-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.tooltip-text h3 {
+    font-size: 14px;
+    color: #000;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.tooltip-text p {
+    font-size: 12px;
+    color: #555;
+}
+
+.about-section {
+    padding: 60px 5%;
+    background-color: #f8f8f8;
+    text-align: center;
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-section h2 {
+    font-size: 32px;
+    color: #000;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.about-section h2::after {
+    content: '';
+    width: 50px;
+    height: 4px;
+    background-color: #F68D00;
+    display: block;
+    margin: 10px auto 0;
+}
+
+.about-text {
+    margin-bottom: 30px;
+}
+
+.about-columns {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    text-align: left;
+}
+
+.column {
+    flex: 1;
+    font-size: 16px;
+    color: #555;
+    line-height: 1.8;
+    max-width: 48%;
+}
+
+.about-image {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Адаптивный дизайн */
+@media (max-width: 768px) {
+    .about-columns {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .column {
+        max-width: 100%;
+    }
+
+    .about-image img {
+        max-width: 80%;
+    }
+}
+    </style> 
+</head> 
+<body> 
+    <header> 
+        <div class="logo"> 
+            <img src="photo_5424673038244374049_y.jpg" alt="TEKO"> 
+        </div> 
+        <div class="header-info"> 
+            г. Самара, ул. Авроры, д. 114А, офис 204-205 |
+            <a href="mailto:teka-samara@mail.ru">teka-samara@mail.ru</a> | 
+            <a href="tel:+78462736161">+7 (846) 273-61-61</a>, 
+            <a href="tel:+79061253113">+7 (906) 125-31-13</a> 
+        </div> 
+        <a href="#" class="cta-button">Рассчитать стоимость</a>
+    </header> 
+
+    <nav> 
+        <a href="#">Услуги</a> 
+        <a href="#">Преимущества</a> 
+        <a href="#">Этапы работы</a> 
+        <a href="#">Отзывы</a> 
+        <a href="#">О компании</a> 
+        <a href="#">FAQ</a> 
+        <a href="#">Контакты</a> 
+    </nav> 
+
+    <section class="hero"> 
+        <div class="hero-content"> 
+            <h1>Перевозка негабаритных и крупнотоннажных грузов</h1> 
+            <a href="#">Наш автопарк</a> 
+        </div> 
+        <div class="form-container"> 
+            <h3>Заполните форму и мы вам перезвоним</h3> 
+            <form> 
+                <input type="text" placeholder="Имя"> 
+                <input type="tel" placeholder="Телефон"> 
+                <textarea placeholder="Комментарий"></textarea> 
+                <button type="submit">Заказать звонок</button> 
+            </form> 
+        </div> 
+    </section>
+    <section class="services-section">
+        <h2>Услуги, которые мы предоставляем</h2>
+        <div class="services-container">
+            <!-- Первый блок -->
+            <div class="service-block">
+                <img src="1.png" alt="По России и СНГ">
+                <h3>По России и СНГ</h3>
+                <p>Перевозка негабаритных и крупнотоннажных грузов по России и СНГ</p>
+            </div>
+
+            <!-- Второй блок -->
+            <div class="service-block">
+                <img src="2.png" alt="Международные перевозки"> <!-- Замените на путь к вашей картинке -->
+                <h3>Перевозки из Китая</h3>
+                <p>Перевозка негабарита и КТГ из Китая в Россию</p>
+            </div>
+
+            <!-- Третий блок -->
+            <div class="service-block">
+                <img src="3.png" alt="Автопарк компании"> <!-- Замените на путь к вашей картинке -->
+                <h3>Перевозим до 20т.</h3>
+                <p>Перевозка габаритного груза до 20 т по России, СНГ</p>
+            </div>
+        </div>
+
+        <!-- Нижняя часть секции (4 блока) -->
+        <div class="services-container">
+            <!-- Четвертый блок -->
+            <div class="service-block">
+                <img src="4.png" alt="Перевозка опасных грузов"> <!-- Замените на путь к вашей картинке -->
+                <h3>Спецтехника</h3>
+                <p>Аренда спецтехники (тралы, краны)</p>
+            </div>
+
+            <!-- Пятый блок -->
+            <div class="service-block">
+                <img src="5.png" alt="Грузовые перевозки для бизнеса"> <!-- Замените на путь к вашей картинке -->
+                <h3>Перевозки за рубеж</h3>
+                <p>Мультимодальные перевозки (Европа, ЮВА, СНГ)</p>
+            </div>
+
+            <!-- Шестой блок -->
+            <div class="service-block">
+                <img src="6.png" alt="Перевозка с использованием крана"> <!-- Замените на путь к вашей картинке -->
+                <h3>Такелажные работы</h3>
+                <p>Такелажные работы (аренда крана, портальных систем)</p>
+            </div>
+
+            <!-- Седьмой блок -->
+            <div class="service-block">
+                <img src="7.png" alt="Перевозка строительных материалов"> <!-- Замените на путь к вашей картинке -->
+                <h3>Сопровождение</h3>
+                <p>Оформление спецразрешений, сопровождение груза, автомобили прикрытия</p>
+            </div>
+        </div>
+    </section> 
+    <section class="advantages-section">
+        <h2>Наши преимущества</h2>
+        <p>Почему стоит работать именно с нами?</p>
+    
+        <div class="advantages-container">
+            <!-- Первый ряд -->
+            <div class="advantage-block">
+                <img src="3.1.png" alt="Собственная техника">
+                <h3>Собственная техника</h3>
+                <p>Собственный парк тягачей и тралов различной модификации</p>
+            </div>
+            <div class="advantage-block">
+                <img src="3.2.png" alt="Большой опыт">
+                <h3>Большой опыт</h3>
+                <p>Опыт работы более 9 лет (Россия, СНГ, Китай)</p>
+            </div>
+            <div class="advantage-block">
+                <img src="3.3.png" alt="Расчёт стоимости">
+                <h3>Расчёт стоимости</h3>
+                <p>Оперативный расчёт стоимости перевозки</p>
+            </div>
+    
+            <!-- Второй ряд -->
+            <div class="advantage-block">
+                <img src="3.4.png" alt="Гарантия">
+                <h3>Гарантия</h3>
+                <p>Гарантия сохранности груза</p>
+            </div>
+            <div class="advantage-block">
+                <img src="3.5.png" alt="Любые габариты">
+                <h3>Любые габариты</h3>
+                <p>Перевозка крупногабаритных грузов</p>
+            </div>
+            <div class="advantage-block">
+                <img src="3.6.png" alt="Перевозка техники">
+                <h3>Перевозка техники</h3>
+                <p>Перевозка строительной техники</p>
+            </div>
+        </div>
+    </section>
+    <section class="transport-section">
+        <!-- Первый блок -->
+        <div class="transport-row">
+            <div class="text-block">
+                <h2>Негабарит и проектные перевозки из Китая</h2>
+                <p>
+                    Являясь всего лишь частью общей картины, некоторые особенности внутренней политики лишь добавляют
+                    фракционных разногласий и ассоциативно распределены по отраслям. Современные технологии достигли
+                    такого уровня, что сплочённость команды профессионалов предоставляет высокую востребованность
+                    своевременного выполнения сверхзадач.Таким образом, разбавленное изрядной долей эмпатии, рациональное мышление создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учетом комплекса экономической целесообразности.
+                </p>
+                <button class="call-button">Заказать звонок</button>
+            </div>
+            <div class="image-block">
+                <img src="карта китая.png" alt="Карта Китая" />
+                <div class="tooltip">
+                    <img src="сертификат.png" alt="Изображение для tooltip" class="tooltip-image" />
+                    <div class="tooltip-text">
+                        <h3>Заголовок</h3>
+                        <p>Следует отметить, что новая модель организационной деятельности.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Второй блок -->
+        <div class="transport-row">
+            <div class="image-block">
+                <img src="перевозки.png" alt="Контейнер" />
+            </div>
+            <div class="text-block">
+                <h2>Мультимодальные перевозки</h2>
+                <p>
+                    И нет сомнений, что акционеры крупнейших компаний освещают чрезвычайно интересные особенности
+                    картины в целом, однако конкретные выводы, разумеется, заблокированы в рамках своих собственных
+                    рациональных ограничений.
+                </p>
+                <button class="call-button">Заказать звонок</button>
+            </div>
+        </div>
+    </section>
+    <section class="about-section">
+        <div class="about-container">
+            <h2>О нашей компании</h2>
+            <div class="about-text">
+                <div class="about-columns">
+                    <div class="column">
+                        <p>
+                            Транспортная компания ТЭКА специализируется на организации перевозок негабаритных и
+                            крупнотоннажных грузов (оборудование для объектов Нефти и газа
+                            (Upstream/Midstream/Downstream), трансформаторы, буровые, емкости, металлоконструкции,
+                            тяжелая техника, краны и т.д.). Участвует в перевозках проектных грузов. Работаем по всей
+                            России, активно участвуем в проектах Казахстана и Узбекистана. Осуществляем импорт из Китая
+                            (через Дальний Восток, РФ / а также Хоргос, РК). Собственный парк техники различной
+                            модификации и грузоподъемности, с оборудованной GPS-навигацией. Данным парком не
+                            ограничиваемся.
+                        </p>
+                    </div>
+                    <div class="column">
+                        <p>
+                            Имеется успешный опыт организации необходимого количества тралов и фур, в зависимости от
+                            сложности проекта. Базируемся в Самаре, но не привязаны к региону. Компания на рынке
+                            перевозок более 9 лет. Большой опыт организации негабаритных перевозок по России и странам
+                            СНГ. Успешно работаем по направлению поставок из Китая на заводы в РФ по доставке
+                            крупногабаритного груза. Благодаря профессионализму и экспертности сотрудников ТЭКА,
+                            компания выполняет перевозки любой сложности, отвечая всем требованиям клиента.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="грузочик.png" alt="Грузовик с тралом" />
+            </div>
+        </div>
+    </section>
+</body> 
+</html>
